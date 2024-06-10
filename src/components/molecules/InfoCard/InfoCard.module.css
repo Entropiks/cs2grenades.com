@@ -1,0 +1,24 @@
+.wrapper {
+  width: 100%;
+  border: 1px solid #404040;
+  padding: 1.5rem;
+  border-radius: 5px;
+}
+
+.line {
+  width: 25%;
+  border-bottom: 2px solid #FBD506;
+  margin-bottom: 1.25rem;
+}
+
+.title {
+  color: white;
+  font-weight: 100;
+  font-size: 1.25rem;
+}
+
+.description {
+  color: #828895;
+  font-weight: 100;
+  margin-top: 1rem;
+}

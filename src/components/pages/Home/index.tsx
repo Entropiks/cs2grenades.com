@@ -1,57 +1,37 @@
-import Image from "next/image";
-import { Row } from "antd";
 import AuthCard from "@components/molecules/AuthCard";
 import IconCard from "@components/atoms/IconCard";
-import TECH_STACK_INFO from "@constants/TechStackInfo";
+// import TECH_STACK_INFO from "@constants/TechStackInfo";
 import CustomAvatar from "@components/atoms/CustomAvatar";
+import { HeaderMenu } from "@components/molecules/HeaderMenu/HeaderMenu";
+import { Hero } from "@components/molecules/Hero/Hero";
+import InfoCard from "@components/molecules/InfoCard/InfoCard";
+import { SideBySide } from "@components/molecules/SideBySide/SideBySide";
 import styles from "./styles.module.sass";
+import { Container } from "@mantine/core";
 
 export default function Home() {
 
-  const renderHeader = () => (
-    <>
-      <Image
-        src='/logos/next.svg'
-        alt='Next logo'
-        width={100}
-        height={20}
-      />
-      <h1 className={styles.heading}>Full-stack starter template 2024</h1>
-      <h2 className={styles.sub_heading}>NextJs + NextAuth + Typescript + Mongo DB + Ant Design</h2>
-    </>
-  )
-
-  const renderTechStack = () => (
-    <Row gutter={16}>
-      {TECH_STACK_INFO?.map((t) => (
-        <IconCard
-          key={t.name}
-          text={t.name}
-          iconPath={t.iconPath}
-          iconSize={35}
-          url={t.url}
-        />
-      ))}
-    </Row>
-  )
-
-  const renderFooter = () => (
-    <div className={styles.footer}>
-      <p className={styles.footer_text}>This template was created on 25th of February 2024.</p>
-      <CustomAvatar
-        image='/images/author.png'
-        mainText='Devon Wijesinghe'
-        subText='wdevon99'
-      />
-    </div>
-  )
-
   return (
     <main className={styles.container}>
-      {renderHeader()}
-      {renderTechStack()}
+      <HeaderMenu />
+      <Hero />
+      <Container size="lg" className={styles.infocard_wrapper}>
+        <InfoCard title="Improve Your Game" description="Quickly browse our broad selection of cs2 map smokes. Quick enough to look up before your round starts." />
+        <InfoCard className={styles.middle_gap} title="Improve Your Game" description="Quickly browse our broad selection of cs2 map smokes. Quick enough to look up before your round starts." />
+        <InfoCard title="Improve Your Game" description="Quickly browse our broad selection of cs2 map smokes. Quick enough to look up before your round starts." />
+      </Container>
+      <Container size="lg" className={styles.sidebyside_wrapper}>
+        <SideBySide flipped={false} useButton={true} />
+      </Container>
       <AuthCard />
-      {renderFooter()}
+      <div className={styles.footer}>
+        <p className={styles.footer_text}>cs2grenades.com</p>
+        <CustomAvatar
+          image='/images/author.png'
+          mainText='Devon Wijesinghe'
+          subText='wdevon99'
+        />
+      </div>
     </main>
   );
 }

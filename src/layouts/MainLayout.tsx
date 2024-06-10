@@ -1,16 +1,21 @@
 import type { Metadata } from "next";
-import { AntdRegistry } from '@ant-design/nextjs-registry';
-import { Inter } from "next/font/google";
+import '@mantine/core/styles.css';
+import { Days_One } from "next/font/google";
 import { getServerSession } from "next-auth";
 import AuthSessionProvider from "@providers/AuthSessionProvider";
-import AntdConfigProvider from "@providers/AntdConfigProvider";
-import "@styles/globals.sass";
 
-const inter = Inter({ subsets: ["latin"] });
+import '@mantine/core/styles.css';
+import "@styles/globals.sass";
+import { ColorSchemeScript, MantineProvider } from "@mantine/core";
+
+const daysone = Days_One({
+  subsets: ["latin"],
+  weight: "400"
+});
 
 export const metadata: Metadata = {
-  title: "Full-stack starter template 2024",
-  description: "NextJs + NextAuth + Typescript + Mongo DB + Ant Design",
+  title: "Counter-Strike 2 Grenades",
+  description: "Counter-Strike 2 Granades, Smokes, Lineups",
   icons: { icon: "/logos/next-icon.svg" }
 };
 
@@ -23,15 +28,18 @@ export default async function RootLayout({
 
   return (
     <html lang="en">
-      <AntdRegistry>
-        <AntdConfigProvider>
-          <AuthSessionProvider session={session}>
-            <body className={inter.className}>
-              {children}
-            </body>
-          </AuthSessionProvider>
-        </AntdConfigProvider>
-      </AntdRegistry>
+      <AuthSessionProvider session={session}>
+        <head>
+          <ColorSchemeScript />
+        </head>
+        <body>
+          <MantineProvider
+            theme={{
+              fontFamily: daysone.style.fontFamily
+            }}
+          >{children}</MantineProvider>
+        </body>
+      </AuthSessionProvider>
     </html>
   );
 }
